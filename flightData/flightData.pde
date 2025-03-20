@@ -6,6 +6,7 @@ final int SCREENX = 1280;
 final int SCREENY = 720;
 
 SpiderGraph map;
+FlightDays flightDays;
 Table table;
 
 void settings() {
@@ -13,9 +14,11 @@ void settings() {
 }
 
 void setup() {
-  map = new SpiderGraph();
   table = loadTable("flights2k.csv", "header"); // "header" indicates the first row contains column names
   println("CSV file loaded.");
+  
+  flightDays = new FlightDays();
+  map = new SpiderGraph();
   
   for (TableRow row : table.rows()){
     String departureAirport = row.getString("ORIGIN");
@@ -34,6 +37,6 @@ void setup() {
 }  
 
 void draw() {
-  background(180);
-  map.draw();
+  flightDays.draw();
+  //map.draw();
 }
