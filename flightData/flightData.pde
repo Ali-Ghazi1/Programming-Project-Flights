@@ -1,6 +1,7 @@
 import java.util.Map;
 HashMap<String, Integer> numberOfDepartures = new HashMap<>();
 HashMap<String, Integer> numberOfArrivals = new HashMap<>();
+HashMap<String, Integer> numberOfDeparturesState = new HashMap<>();
 
 final int SCREENX = 1280;
 final int SCREENY = 720;
@@ -17,16 +18,16 @@ void setup() {
   println("CSV file loaded.");
   
   for (TableRow row : table.rows()){
-    String departureAirport = row.getString("ORIGIN");
-    numberOfDepartures.put(departureAirport, numberOfDepartures.getOrDefault(departureAirport, 0) + 1);
+    //String departureAirport = row.getString("ORIGIN");
+    //numberOfDepartures.put(departureAirport, numberOfDepartures.getOrDefault(departureAirport, 0) + 1);
     
-    String arrivalAirport = row.getString("DEST");
-    numberOfArrivals.put(arrivalAirport, numberOfArrivals.getOrDefault(arrivalAirport, 0) + 1);
+    String departureState = row.getString("ORIGIN_STATE_ABR");
+    numberOfDeparturesState.put(departureState, numberOfDeparturesState.getOrDefault(departureState, 0) + 1);
   }
   
-  for (Map.Entry airport : numberOfDepartures.entrySet()) { // this code iterates throught the hashMap, in this case the departures one
-    print(airport.getKey() + " is ");                       // to iterate through the arrivals one change numberOfDepartures to numberOfArrivals
-    println(airport.getValue());
+  for (Map.Entry state : numberOfDeparturesState.entrySet()) { // this code iterates throught the hashMap, in this case the departures one
+    print(state.getKey() + " is ");                       // to iterate through the arrivals one change numberOfDepartures to numberOfArrivals
+    println(state.getValue());
   }
   
   
