@@ -8,10 +8,8 @@ class QueryUI {
   
   HashSet<String> airports;
   ArrayList<String> airportList;
-  
-  Query parent;  // Reference to the Query class
 
-  QueryUI(PApplet parent) {
+  QueryUI() {
     
     airports = new HashSet<>();
     airportList = new ArrayList<>();
@@ -38,17 +36,16 @@ class QueryUI {
 
     // Button to confirm selection
     cp5.addButton("confirmSelection")
-       .setPosition(width / 2 - 50, 450)
+       .setPosition(width / 2 - 50, 550)
        .setSize(100, 30)
        .setLabel("Confirm");
        
     // Dropdown Menu for Airports
     airportDropdown = cp5.addScrollableList("selectedAirport")
                          .setPosition(width / 2 - 100, 350)
-                         .setSize(400, 200)
+                         .setSize(400, 150)
                          .setBarHeight(40)
                          .setItemHeight(25)
-                         //.setFont(arial)
                          .addItems(airportList)
                          .setOpen(false);
 

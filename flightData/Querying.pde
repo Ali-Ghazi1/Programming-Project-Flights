@@ -4,10 +4,10 @@ class Query {
   
   QueryUI ui;
   
-  Query (PApplet parent) {
+  Query () {
     font = createFont("Arial", 32);
     textFont(font);
-    ui = new QueryUI(parent);
+    ui = new QueryUI();
     textAlign(CENTER);
   }
   
