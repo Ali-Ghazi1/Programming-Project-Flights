@@ -1,23 +1,25 @@
+import java.util.HashSet;
+
 class Query {
-  PFont font;
   
-  Query () {
+  QueryUI ui;
+  
+  Query (PApplet parent) {
     font = createFont("Arial", 32);
     textFont(font);
-    
+    ui = new QueryUI(parent);
     textAlign(CENTER);
   }
   
   void draw() {
-    background(50);
+    background(#1c618c);
     
-    noStroke();
-    fill(#CCEECC);
-    rect(SCREENX / 2 - 350, 100 , 700, 500, 10);
+    strokeWeight(15);
+    stroke(#042e4a);
+    fill(#F0F0FF);
+    rect(SCREENX / 2 - 350, 100 , 700, 500, 20);
     drawText();
-    fill(255);
-    rect(SCREENX / 2, 300, 250, 50, 10);
-    rect(SCREENX / 2, 400, 250, 50, 10);
+
   }  
   
   void drawText() {
