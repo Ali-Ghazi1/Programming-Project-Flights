@@ -15,9 +15,11 @@ class BarChart {
     textAlign(CENTER, BOTTOM);
   }
   
+  
   void draw() {
     background(255);
     textSize(12);
+    homeButton.display();
     line(margin + 30, margin, margin + 30, SCREENY - margin);
     line(margin, SCREENY - margin, SCREENX - margin, SCREENY - margin);
     

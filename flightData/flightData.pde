@@ -1,22 +1,28 @@
-Button flightsButton;
-Button airportsButton;
-Button aboutButton;
+Button barChartButton;
+Button scatterPlotButton;
+Button pieChartButton;
+Button homeButton;
 
 final int SCREENX = 1280;
 final int SCREENY = 720;
 PFont font;
 Table table;
 BarChart barChart;
+ScatterPlot scatterPlot;
 
 String currentPage = "home";
 
 void setup() {
-  size(600, 400); 
+  size(1280, 720); 
   table = loadTable("flights2k.csv", "header");
+  barChart = new BarChart();
+  scatterPlot = new ScatterPlot();
   // initialising buttons
-  flightsButton = new Button("Bar Chart", 200, 150, 200, 50);
-  airportsButton = new Button("Airports", 200, 220, 200, 50);
-  aboutButton = new Button("About", 200, 290, 200, 50);
+  barChartButton = new Button("Bar Chart", 550, 150, 200, 80);
+  scatterPlotButton = new Button("Scatter Plot", 550, 250, 200, 80);
+  pieChartButton = new Button("Pie Chart", 550, 350, 200, 80);
+  homeButton = new Button("Home Page", 1150, 50, 100, 50);
+  
 }
 
 void draw() {
@@ -26,9 +32,9 @@ void draw() {
     drawHomepage();
   } else if (currentPage == "bar chart") {
     drawFlightsPage();
-  } else if (currentPage == "airports") {
+  } else if (currentPage == "scatter plot") {
     drawAirportsPage();
-  } else if (currentPage == "about") {
+  } else if (currentPage == "scatter plot") {
     drawAboutPage();
   }
 }
@@ -40,46 +46,53 @@ void drawHomepage() {
   text("Welcome to Flight Explorer", width / 2, 50);
   
  
-  flightsButton.display();
-  airportsButton.display();
-  aboutButton.display();
+  barChartButton.display();
+  scatterPlotButton.display();
+  pieChartButton.display();
 }
 
 void drawFlightsPage() {
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  fill(0);
-  text("Bar Chart Page", width / 2, 50);
+  //textSize(32);
+  //textAlign(CENTER, CENTER);
+  //fill(0);
+  //text("Bar Chart Page", width / 2, 50)
+  
+  barChart.draw();
 }
 
 void drawAirportsPage() {
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  fill(0);
-  text("Airports Page", width / 2, 50);
+  //textSize(32);
+  //textAlign(CENTER, CENTER);
+  //fill(0);
+  //text("Pie Chart Page", width / 2, 50);
+  
+  scatterPlot.draw();
 }
 
 void drawAboutPage() {
   textSize(32);
   textAlign(CENTER, CENTER);
   fill(0);
-  text("About Flight Explorer", width / 2, 50);
+  text("Scatter Plot Page", width / 2, 50);
 }
 
 void mousePressed() {
-  if (flightsButton.isMouseOver()) {
+  if (barChartButton.isMouseOver()) {
     currentPage = "bar chart";
   }
   
-  if (airportsButton.isMouseOver()) {
-    currentPage = "airports";
+  if (scatterPlotButton.isMouseOver()) {
+    currentPage = "scatter plot";
   }
   
-  if (aboutButton.isMouseOver()) {
-    currentPage = "about";
+  if (pieChartButton.isMouseOver()) {
+    currentPage = "pie chart";
   }
-}
+  if (homeButton.isMouseOver()) {
+    currentPage = "home";
+  }
 
+}
 class Button {
   String label;
   float x, y, w, h;

@@ -37,6 +37,7 @@ class ScatterPlot {
   void draw() {
     // Draw axis
     stroke(0);
+    homeButton.display();
     line(margin, SCREENY - margin, SCREENX - margin, SCREENY - margin); // X-axis
     line(margin, margin, margin, SCREENY - margin); // Y-axis
     
