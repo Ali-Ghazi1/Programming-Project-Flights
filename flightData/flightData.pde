@@ -2,13 +2,19 @@ Button flightsButton;
 Button airportsButton;
 Button aboutButton;
 
+final int SCREENX = 1280;
+final int SCREENY = 720;
+PFont font;
+Table table;
+BarChart barChart;
+
 String currentPage = "home";
 
 void setup() {
   size(600, 400); 
-  
+  table = loadTable("flights2k.csv", "header");
   // initialising buttons
-  flightsButton = new Button("Flights", 200, 150, 200, 50);
+  flightsButton = new Button("Bar Chart", 200, 150, 200, 50);
   airportsButton = new Button("Airports", 200, 220, 200, 50);
   aboutButton = new Button("About", 200, 290, 200, 50);
 }
@@ -18,7 +24,7 @@ void draw() {
   
   if (currentPage == "home") {
     drawHomepage();
-  } else if (currentPage == "flights") {
+  } else if (currentPage == "bar chart") {
     drawFlightsPage();
   } else if (currentPage == "airports") {
     drawAirportsPage();
@@ -43,7 +49,7 @@ void drawFlightsPage() {
   textSize(32);
   textAlign(CENTER, CENTER);
   fill(0);
-  text("Flights Page", width / 2, 50);
+  text("Bar Chart Page", width / 2, 50);
 }
 
 void drawAirportsPage() {
@@ -62,7 +68,7 @@ void drawAboutPage() {
 
 void mousePressed() {
   if (flightsButton.isMouseOver()) {
-    currentPage = "flights";
+    currentPage = "bar chart";
   }
   
   if (airportsButton.isMouseOver()) {
