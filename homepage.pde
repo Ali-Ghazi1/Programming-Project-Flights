@@ -1,4 +1,4 @@
-// Flight Data Storage
+
 ArrayList<Flight> flights = new ArrayList<Flight>();
 String currentQuery = "default";
 ArrayList<Flight> queryResults = new ArrayList<>();
@@ -27,7 +27,7 @@ void draw() {
   drawGlobe(width / 2, height / 2 - 30, 180); 
 }
 
-// Load flight data from CSV
+
 void loadFlights(String filename) {
   String[] rows = loadStrings(filename);
   if (rows == null) {
@@ -42,7 +42,7 @@ void loadFlights(String filename) {
   }
 }
 
-// Draw the main homepage
+
 void drawHomepage() {
   // Title
   fill(50);
@@ -57,13 +57,13 @@ void drawHomepage() {
   fill(0);
   text("Total Flights: " + flights.size(), width / 2, 170); 
 
-  // UI Buttons
+  
   drawButton("Search by Airport", 200, 600, 220, 70);
   drawButton("Search by Date", 600, 600, 220, 70);
   drawButton("View Charts", 400, 700, 220, 70);
 }
 
-// Draw a realistic Earth globe
+
 void drawGlobe(float x, float y, float size) {
   pushMatrix();
   translate(x, y, -100);
