@@ -1,3 +1,6 @@
+import controlP5.*;
+
+
 final int SCREENX = 1280;
 final int SCREENY = 720;
 PFont font;
@@ -11,10 +14,6 @@ void settings() {
 }
 
 void setup() {
-  
-
-  
-
   font = createFont("Arial", 32);
   table = loadTable("flights2k.csv", "header"); // "header" indicates the first row contains column names
   println("CSV file loaded.");
@@ -25,4 +24,8 @@ void setup() {
 void draw() {
   background(255);
   query.draw(); 
+}
+
+void mousePressed() {
+  query.mousePressed();
 }

@@ -1,16 +1,21 @@
-import controlP5.*;
 
 class QueryUI {
   ControlP5 cp5;
   ScrollableList airportDropdown;
+  
   int selectedDate = 1;  
   String selectedAirport = "None";
+  boolean showDepartures = true;
+  
+  PApplet parent;
+  Query query;
   
   HashSet<String> airports;
   ArrayList<String> airportList;
 
-  QueryUI() {
-    
+  QueryUI(PApplet parent, Query query) {
+    this.parent = parent;
+    this.query = query;
     airports = new HashSet<>();
     airportList = new ArrayList<>();
     
@@ -27,45 +32,53 @@ class QueryUI {
     // Load airports from CSV
 
     // Date Slider (1-30)
-    cp5.addSlider("Date")
+    cp5.addSlider("dateSlider")
        .setPosition(width / 2 - 100, 250)
-       .setSize(400, 40)
+       .setSize(300, 40)
        .setRange(1, 31)
        .setNumberOfTickMarks(31)
-       .setValue(1);
+       .setValue(1)
+       .plugTo(this, "updateDate");
 
-    // Button to confirm selection
-    cp5.addButton("confirmSelection")
-       .setPosition(width / 2 - 50, 550)
-       .setSize(100, 30)
-       .setLabel("Confirm");
+    
        
     // Dropdown Menu for Airports
-    airportDropdown = cp5.addScrollableList("selectedAirport")
-                         .setPosition(width / 2 - 100, 350)
-                         .setSize(400, 150)
+    airportDropdown = cp5.addScrollableList("Select Airport")
+                         .setPosition(width / 2 - 100, 325)
+                         .setSize(300, 150)
                          .setBarHeight(40)
                          .setItemHeight(25)
                          .addItems(airportList)
-                         .setOpen(false);
+                         .setOpen(false)
+                         .plugTo(this, "updateAirport");
 
-
+   cp5.addToggle("toggleDepartures")
+   .setPosition(width / 2 - 100, 400) // Left side
+   .setSize(120, 40)
+   .setValue(showDepartures)  // Default state is "ON"
+   .setLabel("")
+   .plugTo(this, "toggle");
+   
+   airportDropdown.bringToFront();
   }
-
-  void display() {
-    fill(0);
-    textSize(16);
-    text("Selected Date: " + selectedDate, width / 2, 320);
-    text("Selected Airport: " + selectedAirport, width / 2, 370);
-  }
-
+  
   void selectedAirport(int n) {
     selectedAirport = airportList.get(n);
   }
 
-  void confirmSelection() {
-    println("Confirmed Selection:");
-    println("Date: " + selectedDate);
-    println("Airport: " + selectedAirport);
+
+  void updateDate(float value) {
+    selectedDate = (int) value;
   }
+
+  void updateAirport(int index) {
+    if (index >= 0 && index < airportList.size()) 
+      selectedAirport = airportList.get(index);
+  }
+  
+  void toggle() {
+    showDepartures = !showDepartures;
+  }
+
+
 }
