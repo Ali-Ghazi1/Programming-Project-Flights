@@ -26,6 +26,8 @@ class QueryUI {
     
     for (String airport : airports)
       airportList.add(airport);
+      
+    airportList.sort(null);
     
     cp5 = new ControlP5(parent);
 

@@ -3,6 +3,8 @@ import controlP5.*;
 
 final int SCREENX = 1280;
 final int SCREENY = 720;
+int scrollOffset;
+
 PFont font;
 PApplet parent = this;
 
@@ -28,4 +30,12 @@ void draw() {
 
 void mousePressed() {
   query.mousePressed();
+}
+
+void mouseWheel(MouseEvent event) {
+  float scrollAmount = event.getCount();
+  scrollOffset -= scrollAmount * 20;
+  scrollOffset = - abs(scrollOffset);
+  
+  println(scrollOffset);
 }

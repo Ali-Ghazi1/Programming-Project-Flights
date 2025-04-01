@@ -5,6 +5,7 @@ class Query {
   QueryUI ui;
   Boolean confirmed = false;
   ArrayList<DataRow> rows = new ArrayList<>();
+  float distance;
   
   Query () {
     font = createFont("Arial", 32);
@@ -31,18 +32,27 @@ class Query {
   }
   
   void drawData()  {
-    fill(#00aaff);
-    rect(15, 15, SCREENX - 30, 30);
-    
-    textAlign(LEFT);
-    fill(255);
-    text("Date", 25, 25);
     
     for (DataRow row : rows)
-        row.draw();
+      row.draw();
+        
+        
+    fill(#0c416c);
+    rect(15, 0, SCREENX - 30, 45, 5);
+    
+    
+    textAlign(LEFT, CENTER);
+    fill(255);
+    textSize(25);
+    text("Date", 25, 23);
+    text("Origin", 200, 23);
+    text("Dest", 325, 23);
+    
+    returnButton();
   }
   
   void loadRows()  {
+    scrollOffset = 0;
     int rowCount = 0;
     for (int i = 0; i < table.getRowCount(); i++)  {
       TableRow row = table.getRow(i);
@@ -62,7 +72,7 @@ class Query {
         
       if (ui.selectedAirport.equalsIgnoreCase(airport) && ui.selectedDate == (day))  {
         rowCount++;
-        rows.add(new DataRow(rowCount * 45 , origin, dest));
+        rows.add(new DataRow(rowCount * 45, origin, dest, ui.selectedDate));
       }
     }
   }
@@ -96,11 +106,32 @@ class Query {
 
   }
   
+  void returnButton()  {
+    noStroke();
+    distance = dist(mouseX, mouseY, SCREENX - 75, SCREENY - 75);
+    
+      if (distance < 50)
+        fill(#00aaff);
+      else
+        fill(#002d5a);
+        
+      circle(SCREENX - 75, SCREENY - 75, 75);
+      fill(255);
+      textAlign(CENTER);
+      text("Back", SCREENX - 75, SCREENY - 67);
+  }
+  
   void mousePressed()  {
     if (mouseX > SCREENX / 2 - 100 && mouseX < SCREENX / 2 + 100 && mouseY > 500 && mouseY < 550) {
       confirmed = true;
       ui.cp5.hide();
       loadRows();
+    }
+    
+    distance = dist(mouseX, mouseY, SCREENX - 75, SCREENY - 75);
+    if (distance < 50)  {
+      confirmed = false;
+      ui.cp5.show();
     }
    
   }
