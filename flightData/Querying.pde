@@ -4,6 +4,7 @@ class Query {
   
   QueryUI ui;
   Boolean confirmed = false;
+  ArrayList<DataRow> rows = new ArrayList<>();
   
   Query () {
     font = createFont("Arial", 32);
@@ -12,19 +13,58 @@ class Query {
   }
   
   void draw() {
+    background(#1c618c);
+        
     if (!confirmed)
-     drawSelect();
+      drawSelect();
+    else
+      drawData();
   }  
   
-  void drawSelect()  {
-    background(#1c618c);
-    
+  void drawSelect()  {    
     strokeWeight(15);
     stroke(#042e4a);
     fill(#F0F0FF);
     rect(SCREENX / 2 - 350, 100 , 700, 500, 20);
     drawText();
     confirmButton();
+  }
+  
+  void drawData()  {
+    fill(#00aaff);
+    rect(15, 15, SCREENX - 30, 30);
+    
+    textAlign(LEFT);
+    fill(255);
+    text("Date", 25, 25);
+    
+    for (DataRow row : rows)
+        row.draw();
+  }
+  
+  void loadRows()  {
+    int rowCount = 0;
+    for (int i = 0; i < table.getRowCount(); i++)  {
+      TableRow row = table.getRow(i);
+      
+      String dateString = row.getString("FL_DATE");
+      String[] date = dateString.split("/");
+      
+      Integer day =  Integer.valueOf(date[1]);
+      String origin = row.getString("ORIGIN");
+      String dest = row.getString("DEST");
+      String airport;
+      
+      if (ui.showDepartures)
+        airport = origin;
+      else
+        airport = dest;
+        
+      if (ui.selectedAirport.equalsIgnoreCase(airport) && ui.selectedDate == (day))  {
+        rowCount++;
+        rows.add(new DataRow(rowCount * 45 , origin, dest));
+      }
+    }
   }
   
   void drawText() {
@@ -60,8 +100,8 @@ class Query {
     if (mouseX > SCREENX / 2 - 100 && mouseX < SCREENX / 2 + 100 && mouseY > 500 && mouseY < 550) {
       confirmed = true;
       ui.cp5.hide();
+      loadRows();
     }
+   
   }
-  
-  
 }
