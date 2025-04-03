@@ -46,7 +46,11 @@ class Query {
     textSize(25);
     text("Date", 25, 23);
     text("Origin", 200, 23);
-    text("Dest", 325, 23);
+    text("Dest", 350, 23);
+    text("Dep Time", 525, 23);
+    text("Arr Time", 725, 23);
+    text("Sch Dep", 950, 23);
+    text("Sch Arr", 1150, 23);
     
     returnButton();
   }
@@ -61,9 +65,17 @@ class Query {
       String[] date = dateString.split("/");
       
       Integer day =  Integer.valueOf(date[1]);
+      
       String origin = row.getString("ORIGIN");
       String dest = row.getString("DEST");
+      
       String airport;
+      
+      String depTime = row.getString("DEP_TIME");
+      String arrTime = row.getString("ARR_TIME");
+      
+      String schDep = row.getString("CRS_DEP_TIME");
+      String schArr = row.getString("CRS_ARR_TIME");
       
       if (ui.showDepartures)
         airport = origin;
@@ -72,7 +84,7 @@ class Query {
         
       if (ui.selectedAirport.equalsIgnoreCase(airport) && ui.selectedDate == (day))  {
         rowCount++;
-        rows.add(new DataRow(rowCount * 45, origin, dest, ui.selectedDate));
+        rows.add(new DataRow(rowCount * 45, origin, dest, ui.selectedDate, depTime, arrTime, schDep, schArr));
       }
     }
   }
