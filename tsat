@@ -1,0 +1,41 @@
+[33mcommit 97492a3184b7f55ec946c696a79a8503431edf4f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mspider-graph[m[33m, [m[1;31morigin/spider-graph[m[33m)[m
+Author: Ali-Ghazi1 <ghazih@tcd.ie>
+Date:   Wed Mar 19 12:44:44 2025 +0000
+
+    Ali-Ghazi: loaded the map of America
+
+[33mcommit 7b2a5e6892eca398c1496068e86cdd81397a51b6[m[33m ([m[1;31morigin/departures-and-arrivals-data[m[33m, [m[1;32mdepartures-and-arrivals-data[m[33m)[m
+Author: Ali-Ghazi1 <ghazih@tcd.ie>
+Date:   Sat Mar 15 14:35:29 2025 +0000
+
+    saved processing code
+
+[33mcommit 70b2d6051c8d7cb277ec909b4c26c5b1046bf884[m
+Author: Ali-Ghazi1 <ghazih@tcd.ie>
+Date:   Sat Mar 15 14:32:23 2025 +0000
+
+    AliGhazi - created hashMap for the number Of arrivals and number of departures
+
+[33mcommit ab156040260b20f32028ec3f06075d1724861a63[m[33m ([m[1;31morigin/importing-data[m[33m, [m[1;32mimporting-data[m[33m)[m
+Author: Ali-Ghazi1 <ghazih@tcd.ie>
+Date:   Thu Mar 13 09:40:17 2025 +0000
+
+    AliGhazi - saved the code
+
+[33mcommit c406fd99e9824ca5c1443dfff56879b6a99ace1b[m
+Author: Ali-Ghazi1 <ghazih@tcd.ie>
+Date:   Thu Mar 13 09:38:23 2025 +0000
+
+    AliGhazi - implemented importing the data and visualising the number of flights per month
+
+[33mcommit 9c6b9cdd4d2733f24495f922514ad6d8de336d13[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Ali Ghazi <alighazi6771@gmail.com>
+Date:   Wed Mar 12 21:03:41 2025 +0000
+
+    created processing project and added 1k flight data to the data folder
+
+[33mcommit 8f286e90184d2292fcd6973848c6f25f93635112[m
+Author: Ali-Ghazi1 <ghazih@tcd.ie>
+Date:   Wed Mar 12 14:28:18 2025 +0000
+
+    Initial commit
