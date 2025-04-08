@@ -64,8 +64,8 @@ class Query {
     scrollOffset = 0;
     int rowCount = 0;
     
-    for (int i = 0; i < table.getRowCount(); i++)  {
-      TableRow row = table.getRow(i);
+    for (int i = 0; i < fullTable.getRowCount(); i++)  {
+      TableRow row = fullTable.getRow(i);
       
       String dateString = row.getString("FL_DATE");
       String[] date = dateString.split("/");

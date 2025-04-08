@@ -2,8 +2,10 @@ import controlP5.*;
 
 int scrollOffset;
 PApplet parent = this;
+PImage image;
 
 boolean inHomePage = true;
+float x = 0;
 
 Button barChartButton;
 Button scatterPlotButton;
@@ -16,6 +18,8 @@ final int SCREENX = 1280;
 final int SCREENY = 720;
 PFont font;
 Table table;
+Table fullTable;
+
 BarChart barChart;
 ScatterPlot scatterPlot;
 PieChartDepartures pieChart;
@@ -27,21 +31,32 @@ String currentPage = "home";
 void setup() {
   size(1280, 720); 
   table = loadTable("flights2k.csv", "header");
+  fullTable = loadTable("flights_full.csv", "header");
   scatterPlot = new ScatterPlot();
   // initialising buttons
   barChartButton = new Button("Flights Per Day", 550, 150, 200, 80);
   scatterPlotButton = new Button("Scatter Plot", 550, 250, 200, 80);
   pieChartButton = new Button("Flights by State", 550, 350, 200, 80);
-  homeButton = new Button("Home Page", 1150, 50, 100, 50);
+  homeButton = new Button("Home", 1150, 50, 100, 50);
   queryButton = new Button("Query Page", 550, 450, 200, 80);
   delayedButton = new Button("Most Delayed Flights", 550, 550, 200, 80);
   pieChart = new PieChartDepartures();
-  
+  image = loadImage("background-image.jpg");
 }
 
 void draw() {
   background(175, 200, 200); 
   stroke(1);
+  
+  image(image, x, height/2 - image.height/2);
+  image(image, x - image.width, height/2 - image.height/2); 
+
+  x += 2; 
+
+  if (x >= image.width) {
+    x = 0;
+  }
+
   
   if (currentPage == "home") {
     drawHomepage();
@@ -152,13 +167,14 @@ class Button {
   }
   
   void display() {
-    stroke(1);
-    fill(255, 230, 205); // Button color
+    stroke(#242e4a);
+    strokeWeight(3);
+    fill(#00aaff); // Button color
     rect(x, y, w, h, 10); // Draw the button with rounded corners
-    fill(255); // White text color
-    textSize(18);
+    strokeWeight(1);
+    textSize(22);
     textAlign(CENTER, CENTER);
-    fill(0);
+    fill(255);
     text(label, x + w / 2, y + h / 2); // Place the text on the button
   }
   

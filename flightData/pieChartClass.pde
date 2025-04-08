@@ -44,10 +44,12 @@ class PieChartDepartures {
   }
 
   void draw() {
-    background(245, 245, 250);
+    background(175, 200, 200); 
+    homeButton.display();
     pieChart(600, anglesArray, selected);
 
     // Display labels and values
+    textSize(16);
     for (int i = 0; i < labelsArray.size(); i++) {
       textAlign(LEFT);
       fill(0);

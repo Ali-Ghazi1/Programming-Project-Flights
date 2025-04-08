@@ -36,6 +36,7 @@ class ScatterPlot {
   
   void draw() {
     // Draw axis
+    background(175, 200, 200);
     stroke(0);
     homeButton.display();
     line(margin, SCREENY - margin, SCREENX - margin, SCREENY - margin); // X-axis
@@ -44,6 +45,7 @@ class ScatterPlot {
     // Label X-axis (States) with better spacing
     textAlign(CENTER);
     textSize(12);
+    fill(0);
     for (int i = 0; i < stateList.size(); i++) {
       String state = stateList.get(i);
       float x = margin + i * xSpacing;
@@ -55,6 +57,7 @@ class ScatterPlot {
     // Label Y-axis (Arrival Times)
     textAlign(RIGHT);
     textSize(14);
+    fill(0);
     for (int t = 0; t <= 2400; t += 200) {
       float y = SCREENY - margin - (t * yScale);
       text(t, margin - 15, y);
@@ -78,7 +81,7 @@ class ScatterPlot {
     }
     
 //Text on screen
-  fill(0, 0, 0);
+  fill(0);
   textAlign(CENTER, TOP);
   textSize(32);
   text("Arrival Times At Each State", SCREENX / 2, 50);
