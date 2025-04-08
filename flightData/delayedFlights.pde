@@ -11,7 +11,6 @@ class DelayedFlights {
     sortedFlights.sort((a, b) -> b.getDelay() - a.getDelay());
   }
   
-  
   void draw() {
     background(175, 200, 200);
     fill(255, 230, 205);
