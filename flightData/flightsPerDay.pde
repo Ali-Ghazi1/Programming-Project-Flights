@@ -1,12 +1,14 @@
 class BarChart {
   int margin = 50;
   int[] days = new int[32];
-  int maxHeight = 400;
+  int maxHeight = 2000;
+  Table fullTable;
   
   
   
   BarChart() {
-    for (TableRow row : table.rows()) {
+    fullTable = loadTable("flights_full.csv", "header");
+    for (TableRow row : fullTable.rows()) {
       String dateString = row.getString("FL_DATE");
       String[] date = dateString.split("/");
       Integer day =  Integer.valueOf(date[1]);
@@ -24,7 +26,8 @@ class BarChart {
     line(margin, SCREENY - margin, SCREENX - margin, SCREENY - margin);
     
     for (int i = 1; i <= 10; i++) {
-      line(margin, SCREENY - margin - (60 * i), margin + 30, SCREENY - margin - (60 * i));
+      fill(0);
+      line(margin + 20, SCREENY - margin - (60 * i), margin + 30, SCREENY - margin - (60 * i));
       text(40 * i, margin, SCREENY - margin - (60 * i));
     }
     
@@ -41,7 +44,7 @@ class BarChart {
   }
   
   int normaliseHeight(int x) {
-      float newHeight = (float) x / maxHeight * 600;
+      float newHeight = ((float) x / maxHeight) * 600;
       return (int) newHeight;
   }
   
