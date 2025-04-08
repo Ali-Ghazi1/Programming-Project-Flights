@@ -56,8 +56,10 @@ class Query {
   }
   
   void loadRows()  {
+    rows = new ArrayList<>();
     scrollOffset = 0;
     int rowCount = 0;
+    
     for (int i = 0; i < table.getRowCount(); i++)  {
       TableRow row = table.getRow(i);
       
