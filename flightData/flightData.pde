@@ -27,11 +27,12 @@ String currentPage = "home";
 void setup() {
   size(1280, 720); 
   table = loadTable("flights2k.csv", "header");
+  barChart = new BarChart();
   scatterPlot = new ScatterPlot();
   // initialising buttons
-  barChartButton = new Button("Flights Per Day", 550, 150, 200, 80);
+  barChartButton = new Button("Bar Chart", 550, 150, 200, 80);
   scatterPlotButton = new Button("Scatter Plot", 550, 250, 200, 80);
-  pieChartButton = new Button("Flights by State", 550, 350, 200, 80);
+  pieChartButton = new Button("Pie Chart", 550, 350, 200, 80);
   homeButton = new Button("Home Page", 1150, 50, 100, 50);
   queryButton = new Button("Query Page", 550, 450, 200, 80);
   delayedButton = new Button("Most Delayed Flights", 550, 550, 200, 80);
@@ -40,8 +41,7 @@ void setup() {
 }
 
 void draw() {
-  background(175, 200, 200); 
-  stroke(1);
+  background(255); 
   
   if (currentPage == "home") {
     drawHomepage();
@@ -50,7 +50,7 @@ void draw() {
   } else if (currentPage == "scatter plot") {
     drawAirportsPage();
   } else if (currentPage == "pie chart") {
-    drawPieChart();
+    drawAboutPage();
   } else if (currentPage == "query") {
     drawQueryPage();
   } else if (currentPage == "delayed") {
@@ -80,7 +80,7 @@ void drawAirportsPage() {
   scatterPlot.draw();
 }
 
-void drawPieChart() {
+void drawAboutPage() {
   pieChart.draw();
 }
 
@@ -98,7 +98,6 @@ void mousePressed() {
   if (inHomePage) {
     if (barChartButton.isMouseOver()) {
       currentPage = "bar chart";
-      barChart = new BarChart();
       inHomePage = false;
     }
   
@@ -124,13 +123,8 @@ void mousePressed() {
   }
   if (homeButton.isMouseOver()) {
       inHomePage = true;
-      if (currentPage.equals("query"))
-        query.ui.cp5.hide();
       currentPage = "home";
-   }
-    
-  if (currentPage.equals("query"))
-    query.mousePressed();
+    }
 }
 
 void mouseWheel(MouseEvent event) {
@@ -152,13 +146,11 @@ class Button {
   }
   
   void display() {
-    stroke(1);
-    fill(255, 230, 205); // Button color
+    fill(0, 122, 204); // Button color
     rect(x, y, w, h, 10); // Draw the button with rounded corners
     fill(255); // White text color
     textSize(18);
     textAlign(CENTER, CENTER);
-    fill(0);
     text(label, x + w / 2, y + h / 2); // Place the text on the button
   }
   

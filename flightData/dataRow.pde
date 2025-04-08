@@ -19,7 +19,6 @@ class DataRow {
       minutes = time % 100;
       this.depTime = String.format("%02d:%02d", hours, minutes);
       
-      if (!arrTime.equals(""));
       time = Integer.valueOf(arrTime);
       hours = time / 100;
       minutes = time % 100;

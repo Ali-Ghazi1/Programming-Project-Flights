@@ -44,14 +44,13 @@ class PieChartDepartures {
   }
 
   void draw() {
-    background(245, 245, 250);
+    background(100);
     pieChart(600, anglesArray, selected);
 
     // Display labels and values
     for (int i = 0; i < labelsArray.size(); i++) {
-      textAlign(LEFT);
-      fill(0);
-      text(labelsArray.get(i) + ": " + valuesArray.get(i) + " ≈ " + nf(anglesArray.get(i), 0, 2) + "%", 25, 40 + (16.5 * i));
+      text(labelsArray.get(i) + ": " + valuesArray.get(i) + " ≈ " + nf(anglesArray.get(i), 0, 2) + "%", 
+          20, 40 + (16.5 * i));
     }
   }
 

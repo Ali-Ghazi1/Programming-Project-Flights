@@ -15,7 +15,7 @@ class Query {
   
   void draw() {
     background(#1c618c);
-    stroke(1);
+     homeButton.display();
         
     if (!confirmed)
       drawSelect();
@@ -27,12 +27,9 @@ class Query {
     strokeWeight(15);
     stroke(#042e4a);
     fill(#F0F0FF);
-    rect(SCREENX / 2 - 350, 100, 700, 500, 20);
-    
-    strokeWeight(1);
+    rect(SCREENX / 2 - 350, 100 , 700, 500, 20);
     drawText();
     confirmButton();
-    homeButton.display();
   }
   
   void drawData()  {
@@ -151,6 +148,6 @@ class Query {
       confirmed = false;
       ui.cp5.show();
     }
-
+   
   }
 }
