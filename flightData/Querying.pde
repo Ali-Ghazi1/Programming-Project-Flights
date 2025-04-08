@@ -15,6 +15,7 @@ class Query {
   
   void draw() {
     background(#1c618c);
+     homeButton.display();
         
     if (!confirmed)
       drawSelect();

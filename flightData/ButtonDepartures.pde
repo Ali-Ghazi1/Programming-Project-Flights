@@ -1,3 +1,16 @@
+import java.util.Map;
+HashMap<String, Integer> numberOfDepartures = new HashMap<>();
+HashMap<String, Integer> numberOfArrivals = new HashMap<>();
+HashMap<String, Integer> numberOfDeparturesState = new HashMap<>();
+
+boolean statesDisplayed = true; // Start with states displayed
+
+
+PieChartDepartures p;
+ButtonDepartures b;
+ButtonDepartures b2;
+ButtonDepartures b3;
+
 class ButtonDepartures {
   int rectX;
   int rectY;
@@ -43,7 +56,7 @@ class ButtonDepartures {
 
   void mousePressed() {
     if (rectOver) {
-      statesDisplayed = !statesDisplayed;
+      statesDisplayed = !statesDisplayed;  
       p.updateData(statesDisplayed);
 
       // Toggle button text

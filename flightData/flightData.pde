@@ -10,7 +10,7 @@ Button scatterPlotButton;
 Button pieChartButton;
 Button homeButton;
 Button queryButton;
-Button filteringButton;
+Button delayedButton;
 
 final int SCREENX = 1280;
 final int SCREENY = 720;
@@ -18,8 +18,9 @@ PFont font;
 Table table;
 BarChart barChart;
 ScatterPlot scatterPlot;
+PieChartDepartures pieChart;
 Query query;
-Filtering filtering;
+DelayedFlights delayed;
 
 String currentPage = "home";
 
@@ -34,7 +35,8 @@ void setup() {
   pieChartButton = new Button("Pie Chart", 550, 350, 200, 80);
   homeButton = new Button("Home Page", 1150, 50, 100, 50);
   queryButton = new Button("Query Page", 550, 450, 200, 80);
-  filteringButton = new Button("Most Delayed Flights", 550, 550, 200, 80);
+  delayedButton = new Button("Most Delayed Flights", 550, 550, 200, 80);
+  pieChart = new PieChartDepartures();
   
 }
 
@@ -50,10 +52,10 @@ void draw() {
   } else if (currentPage == "pie chart") {
     drawAboutPage();
   } else if (currentPage == "query") {
-      query.draw();
-  }
-   else if (currentPage == "filtering") {
-    //filtering.draw();
+    drawQueryPage();
+  } else if (currentPage == "delayed") {
+    drawDelayedPage();
+     
    }
 }
 
@@ -63,76 +65,77 @@ void drawHomepage() {
   fill(0);
   text("Welcome to Flight Explorer", width / 2, 50);
   
- 
   barChartButton.display();
   scatterPlotButton.display();
   pieChartButton.display();
   queryButton.display();
-  filteringButton.display();
+  delayedButton.display();
 }
 
 void drawFlightsPage() {
-  //textSize(32);
-  //textAlign(CENTER, CENTER);
-  //fill(0);
-  //text("Bar Chart Page", width / 2, 50)
-  
   barChart.draw();
 }
 
 void drawAirportsPage() {
-  //textSize(32);
-  //textAlign(CENTER, CENTER);
-  //fill(0);
-  //text("Pie Chart Page", width / 2, 50);
-  
   scatterPlot.draw();
 }
 
 void drawAboutPage() {
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  fill(0);
-  text("Scatter Plot Page", width / 2, 50);
+  pieChart.draw();
+}
+
+void drawQueryPage()  {
+  query.draw();
+}
+
+void drawDelayedPage()  {
+  delayed.draw();
 }
 
 
-
 void mousePressed() {
+   //b2.mousePressed();
   if (inHomePage) {
-  if (barChartButton.isMouseOver()) {
-    currentPage = "bar chart";
-    inHomePage = false;
-  }
+    if (barChartButton.isMouseOver()) {
+      currentPage = "bar chart";
+      inHomePage = false;
+    }
   
-  if (scatterPlotButton.isMouseOver()) {
-    currentPage = "scatter plot";
-    inHomePage = false;
-  }
+    if (scatterPlotButton.isMouseOver()) {
+      currentPage = "scatter plot";
+      inHomePage = false;
+    }
   
-  if (pieChartButton.isMouseOver()) {
-    inHomePage = false;
-    currentPage = "pie chart";
+    if (pieChartButton.isMouseOver()) {
+      inHomePage = false;
+      currentPage = "pie chart";
+    }
+    if (queryButton.isMouseOver()) {
+      query = new Query();
+      inHomePage = false;
+      currentPage = "query";
+    }
+    if (delayedButton.isMouseOver()) {
+      delayed = new DelayedFlights();
+      inHomePage = false;
+      currentPage = "delayed";
+    }
   }
-  if (queryButton.isMouseOver()) {
-    query = new Query();
-    inHomePage = false;
-    currentPage = "query";
-  }
-  }
-  
-   if (homeButton.isMouseOver()) {
-     inHomePage = true;
-    currentPage = "home";
-  }
-  
-  if (query != null)
-    query.mousePressed();
+  if (homeButton.isMouseOver()) {
+      inHomePage = true;
+      currentPage = "home";
+    }
+}
+
+void mouseWheel(MouseEvent event) {
+  float scrollAmount = event.getCount();
+  scrollOffset -= scrollAmount * 20;
+  scrollOffset = - abs(scrollOffset);
 }
 
 class Button {
   String label;
-  float x, y, w, h;
+  float x, y, w, h;  
   
   Button(String label, float x, float y, float w, float h) {
     this.label = label;
@@ -154,11 +157,4 @@ class Button {
   boolean isMouseOver() {
     return mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h;
   }
-}
-
-
-void mouseWheel(MouseEvent event) {
-  float scrollAmount = event.getCount();
-  scrollOffset -= scrollAmount * 20;
-  scrollOffset = - abs(scrollOffset);
 }

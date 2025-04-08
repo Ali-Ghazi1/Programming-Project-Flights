@@ -16,7 +16,8 @@ class DelayedFlights {
     background(175, 200, 200);
     fill(255, 230, 205);
     rect(SCREENX / 2 - 400, SCREENY / 2 - 200, 800, 400);
-    
+    homeButton.display();
+   
     fill(0);
     textSize(26);
     textAlign(CENTER, CENTER);

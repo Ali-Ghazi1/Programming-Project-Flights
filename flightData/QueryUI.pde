@@ -1,4 +1,3 @@
-
 class QueryUI {
   ControlP5 cp5;
   ScrollableList airportDropdown;

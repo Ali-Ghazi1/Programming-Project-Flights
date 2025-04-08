@@ -3,10 +3,8 @@ class PieChartDepartures {
   ArrayList<String> labelsArray = new ArrayList<>();
   ArrayList<Float> anglesArray = new ArrayList<>();
   boolean selected = false;
-  PFont fontUnselected = loadFont("ArialMT-20.vlw");
 
   PieChartDepartures() {
-    textFont(fontUnselected);
     textSize(16.5);
     table = loadTable("flights2k.csv", "header"); // Load CSV file
     println("CSV file loaded.");
