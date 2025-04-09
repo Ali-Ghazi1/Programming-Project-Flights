@@ -15,10 +15,10 @@ class ButtonDepartures {
   int rectX;
   int rectY;
   int rectSize = 240;
-  color rectColor = color(10, 140, 40);
+  color rectColor = color(#00aaff);
   color rectHighlight = color(255);
   boolean rectOver = false;
-  PFont fontButton = loadFont("ArialMT-20.vlw");
+  //PFont fontButton = loadFont("ArialMT-20.vlw");
   String label;  
 
   ButtonDepartures() {
@@ -37,12 +37,13 @@ class ButtonDepartures {
       fill(rectColor);
     }
 
-    stroke(255);
-    rect(rectX, rectY, rectSize, rectSize / 3);
+    stroke(#242e4a);
+    strokeWeight(3);
+    rect(rectX, rectY, rectSize, rectSize / 3, 10);
 
     // Set font and size specifically for the button
     pushStyle();
-    textFont(fontButton);
+    //textFont(fontButton);
     textSize(30);  // Adjusted size so text fits inside button
     fill(255);
     textAlign(CENTER, CENTER);
@@ -57,7 +58,7 @@ class ButtonDepartures {
   void mousePressed() {
     if (rectOver) {
       statesDisplayed = !statesDisplayed;  
-      p.updateData(statesDisplayed);
+      pieChart.updateData(statesDisplayed);
 
       // Toggle button text
       label = statesDisplayed ? "Airports" : "States";

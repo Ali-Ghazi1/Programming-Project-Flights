@@ -6,16 +6,16 @@ class PieChartDepartures {
 
   PieChartDepartures() {
     textSize(16.5);
-    table = loadTable("flights2k.csv", "header"); // Load CSV file
-    println("CSV file loaded.");
 
     // Load data from CSV into HashMaps
-    for (TableRow row : table.rows()) {
+    for (TableRow row : fullTable.rows()) {
       String departureAirport = row.getString("ORIGIN");
       numberOfDepartures.put(departureAirport, numberOfDepartures.getOrDefault(departureAirport, 0) + 1);
 
       String departureState = row.getString("ORIGIN_STATE_ABR");
       numberOfDeparturesState.put(departureState, numberOfDeparturesState.getOrDefault(departureState, 0) + 1);
+      
+      b2 = new ButtonDepartures(); 
     }
 
     // Initialize with states data
@@ -46,6 +46,7 @@ class PieChartDepartures {
   void draw() {
     background(175, 200, 200); 
     homeButton.display();
+    b2.draw(1010, 120);
     pieChart(600, anglesArray, selected);
 
     // Display labels and values

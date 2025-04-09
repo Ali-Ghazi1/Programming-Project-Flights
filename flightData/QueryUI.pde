@@ -33,13 +33,22 @@ class QueryUI {
     // Load airports from CSV
 
     // Date Slider (1-30)
-    cp5.addSlider("dateSlider")
+    //cp5.addSlider("dateSlider")
+    //   .setPosition(width / 2 - 100, 250)
+    //   .setSize(300, 40)
+    //   .setRange(1, 31)
+    //   .setNumberOfTickMarks(31)
+    //   .setValue(1)
+    //   .plugTo(this, "updateDate");
+
+  // Date Input (Textfield)
+    cp5.addTextfield("Enter Date")
        .setPosition(width / 2 - 100, 250)
        .setSize(300, 40)
-       .setRange(1, 31)
-       .setNumberOfTickMarks(31)
-       .setValue(1)
-       .plugTo(this, "updateDate");
+       .setFont(createFont("Arial", 20))
+       .setAutoClear(false)
+       .setCaptionLabel("")
+       .plugTo(this, "setDateInput");
 
     
        
@@ -79,6 +88,18 @@ class QueryUI {
   
   void toggle() {
     showDepartures = !showDepartures;
+  }
+
+   void setDateInput(String value) {
+    try {
+      int parsed = Integer.parseInt(value);
+      if (parsed >= 1 && parsed <= 31) {
+        selectedDate = parsed;
+      }
+    } catch (NumberFormatException e) {
+      println("Invalid date input: " + value);
+    }
+    println(selectedDate);
   }
 
 
