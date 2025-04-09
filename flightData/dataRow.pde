@@ -9,7 +9,7 @@ class DataRow {
     this.dest = dest;
     this.date = date;
     
-    if (depTime.equals("")) {
+    if (depTime.equals("") || arrTime.equals("")) {
       this.depTime = depTime;
       this.arrTime = arrTime;
     }
