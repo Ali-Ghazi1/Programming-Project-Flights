@@ -146,6 +146,9 @@ void mousePressed() {
     
   if (currentPage.equals("query"))
     query.mousePressed();
+    
+  if (currentPage.equals("pie chart"))
+    b2.mousePressed();
 }
 
 void mouseWheel(MouseEvent event) {
